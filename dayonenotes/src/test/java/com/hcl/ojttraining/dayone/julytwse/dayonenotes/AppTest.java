@@ -1,4 +1,4 @@
-package com.hcl.ojttraining_dayone_julytwse.dayonetopic;
+package com.hcl.ojttraining.dayone.julytwse.dayonenotes;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
