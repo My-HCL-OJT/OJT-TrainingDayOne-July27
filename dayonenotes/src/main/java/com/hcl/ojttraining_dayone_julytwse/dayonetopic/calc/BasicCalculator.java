@@ -5,12 +5,20 @@ import java.util.Scanner;
 import com.hcl.ojttraining_dayone_julytwse.dayonetopic.calcinterface.CalculatorI;
 import com.hcl.ojttraining_dayone_julytwse.dayonetopic.service.CalcService;
 
+import lombok.Getter;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @RequiredArgsConstructor
+@Getter
+@Setter
+
 public class BasicCalculator implements CalculatorI {
+	@NonNull 	double num1;
+	@NonNull 	double num2;
+	public BasicCalculator() {	}
 	CalcService cs = new CalcService();
-	double num1, num2;
 
 	@Override
 	public double add(double num1, double num2) {
@@ -33,7 +41,6 @@ public class BasicCalculator implements CalculatorI {
 	}
 
 	public static void main(String[] args) {
-		BasicCalculator bcalc = new BasicCalculator();
 
 		System.out.print("Enter the first number: ");
 		Scanner scanner = new Scanner(System.in);
@@ -43,21 +50,23 @@ public class BasicCalculator implements CalculatorI {
 
 		var num2 = scanner.nextDouble();
 		System.out.print("Enter a operator: ");
+		
+		BasicCalculator bcalc = new BasicCalculator(num1,num2);
 
 		String operation = scanner.next();
 
 		switch (operation) {
 		case "+":
-			bcalc.add(bcalc.num1, bcalc.num2);
+			bcalc.add(bcalc.getNum1(), bcalc.getNum2());
 			break;
 		case "-":
-			bcalc.subtract(bcalc.num1, bcalc.num2);
+			bcalc.subtract(bcalc.getNum1(), bcalc.getNum2());
 			break;
 		case "*":
-			bcalc.multiply(bcalc.num1, bcalc.num2);
+			bcalc.multiply(bcalc.getNum1(), bcalc.getNum2());
 			break;
 		case "/":
-			bcalc.divide(bcalc.num1, bcalc.num2);
+			bcalc.divide(bcalc.getNum1(), bcalc.getNum2());
 			break;
 		default:
 			System.out.println("Sorry incorrect operation used!");
@@ -65,7 +74,7 @@ public class BasicCalculator implements CalculatorI {
 		System.out.print("Enter 0 to quit or enter any other number to rerun");
 		var runAgain = scanner.next();
 		if (!runAgain.equals("0")) {
-			ScientificCalculator.main(args);
+			BasicCalculator.main(args);
 		} else {
 			System.out.println("Bye!");
 		}

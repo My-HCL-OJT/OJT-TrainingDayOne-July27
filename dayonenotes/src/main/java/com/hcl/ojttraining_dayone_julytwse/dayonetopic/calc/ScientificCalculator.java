@@ -4,11 +4,19 @@ import java.util.Scanner;
 
 import com.hcl.ojttraining_dayone_julytwse.dayonetopic.service.CalcService;
 
+import lombok.Getter;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @RequiredArgsConstructor
+@Getter
+@Setter
 public class ScientificCalculator extends CalcAbstract {
-	double num1, num2;
+	@NonNull double num1, num2;
+	//constructor
+	public ScientificCalculator(){
+	}
 	CalcService cs = new CalcService();
 
 	@Override
@@ -36,34 +44,34 @@ public class ScientificCalculator extends CalcAbstract {
 	}
 
 	public static void main(String[] args) {
-		ScientificCalculator scalc = new ScientificCalculator(); // calls the constructor
 
 		System.out.print("Enter the first number: ");
 		Scanner scanner = new Scanner(System.in);
 
-		scalc.num1 = scanner.nextDouble(); // inputs the scans for the first number
+		var num1 = scanner.nextDouble(); // inputs the scans for the first number
 		System.out.print("Enter the second number: ");
 
-		scalc.num2 = scanner.nextDouble(); // inputs the scans for the second number
+		var num2 = scanner.nextDouble(); // inputs the scans for the second number
 		System.out.print("Enter a operator: ");
+		ScientificCalculator scalc = new ScientificCalculator(num1,num2); // calls the constructor
 
 		var operation = scanner.next(); // inputs the scans for the operation
 
 		switch (operation) {
 		case "+":
-			scalc.add(scalc.num1, scalc.num2);
+			scalc.add(scalc.getNum1(), scalc.getNum2());
 			break;
 		case "-":
-			scalc.subtract(scalc.num1, scalc.num2);
+			scalc.subtract(scalc.getNum1(), scalc.getNum2());
 			break;
 		case "*":
-			scalc.multiply(scalc.num1, scalc.num2);
+			scalc.multiply(scalc.getNum1(), scalc.getNum2());
 			break;
 		case "/":
-			scalc.divide(scalc.num1, scalc.num2);
+			scalc.divide(scalc.getNum1(), scalc.getNum2());
 			break;
 		case "**":
-			scalc.pow(scalc.num1, scalc.num2);
+			scalc.pow(scalc.getNum1(), scalc.getNum2());
 		default:
 			System.out.println("Sorry incorrect operation used!");
 		}
